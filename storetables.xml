@@ -4,7 +4,7 @@
     <sampleQuery>select * from {table}</sampleQuery>
   </meta>
   <bindings>
-    <select itemPath="table.field" produces="XML">
+    <select itemPath="Catalog.Table.TableField" produces="XML">
       <urls>
         <url>http://{storeID}.stores.yahoo.net/catalog.xml</url>
       </urls>
