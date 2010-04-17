@@ -11,11 +11,6 @@
       <inputs>
         <key id="storeID" type="xs:string" paramType="path" required="true"/>
       </inputs>
-      <execute>
-        <![CDATA[
-                 response.object = y.rest(request.url).get().response;
-        ]]>
-      </execute>
     </select>
   </bindings>
 </table>
