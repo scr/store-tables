@@ -4,6 +4,13 @@
     <sampleQuery>select * from {table}</sampleQuery>
   </meta>
   <bindings>
-    <select itemPath="store" produces="XML" />
+    <select itemPath="table.field" produces="XML">
+      <urls>
+        <url>http://{storeID}.stores.yahoo.net/catalog.xml</url>
+      </urls>
+      <inputs>
+        <key id="storeID" type="xs:string" paramType="path" required="true"/>
+      </inputs>
+    </select>
   </bindings>
 </table>
