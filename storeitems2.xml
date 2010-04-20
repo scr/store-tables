@@ -13,7 +13,7 @@
       </inputs>
       <execute><![CDATA[
       var fetch = request.get().response;
-      var catalog = <Catalog></Catalog>;
+      var catalog = <Catalog><Item ID="foo"/></Catalog>;
       for each(var item in fetch.Catalog.Item) {
           catalog.Catalog += <Item><ID>{item.ID}</ID></Item>;
       }
