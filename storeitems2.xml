@@ -15,7 +15,7 @@
       var fetch = request.get().response;
       var catalog = <Catalog></Catalog>;
       for each(var item in fetch.Item) {
-          var itemtag = <Item><ID>{item.@["ID"]}</ID></Item>;
+          var itemtag = <Item ID={item.@["ID"]}></Item>;
           for each(var field in item.ItemField) {
               itemtag.Item += <{field.@["TableFieldID"]}>{field.@["Value"]}</{field.@["TableFieldID"]}>;
           }
