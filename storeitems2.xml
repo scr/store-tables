@@ -13,9 +13,10 @@
       </inputs>
       <execute><![CDATA[
       var catalog = <Catalog><Catalog/>;
-      for each(var item in Catalog.Item) {
+      for each(var item in results.object.Catalog.Item) {
       catalog.Catalog += <Item><ID>{item.ID}</ID></Item>;
       }
+      results.object = catalog;
       ]]></execute>
     </select>
   </bindings>
