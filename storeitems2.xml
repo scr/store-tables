@@ -20,7 +20,7 @@
               itemtag.Item += <{field.@["TableFieldID"]}>{field.@["Value"]}</{field.@["TableFieldID"]}>;
           }
           for each(var options in item.ItemFieldOptions) {
-              itemtag.Item += <{field.@["TableFieldID"]}>{options}</{field.@["TableFieldID"]}>;
+              itemtag.Item += <{field.@["TableFieldID"]}>{options.Option}</{field.@["TableFieldID"]}>;
           }
           catalog.Catalog += itemtag;
       }
