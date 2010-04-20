@@ -14,7 +14,7 @@
       <execute><![CDATA[
       var catalog = <Catalog><Catalog/>;
       for each(var item in Catalog.Item) {
-      catalog.Catalog += <Item><ID>{item.ID}</ID></Item>
+      catalog.Catalog += <Item><ID>{item.ID}</ID></Item>;
       }
       ]]></execute>
     </select>
