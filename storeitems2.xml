@@ -22,7 +22,7 @@
           for each(var options in item.ItemFieldOptions) {
               var optionTags=<>;
               for each (var option in options.Option) {
-	      	  optionTags += <Option>{option.@Value}</Option>;
+	      	  optionTags += <Option>{option.@["Value"]}</Option>;
 	      }
               itemtag.Item += <{options.@["TableFieldID"]}>{optionTags}</{options.@["TableFieldID"]}>;
           }
