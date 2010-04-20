@@ -12,7 +12,7 @@
         <key id="storeID" type="xs:string" paramType="path" required="true"/>
       </inputs>
       <execute><![CDATA[
-      var fetch = request.get().response();
+      var fetch = request.get().response;
       var catalog = <Catalog></Catalog>;
       for each(var item in fetch.Catalog.Item) {
           catalog.Catalog += <Item><ID>{item.ID}</ID></Item>;
