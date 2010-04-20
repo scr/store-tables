@@ -12,7 +12,10 @@
         <key id="storeID" type="xs:string" paramType="path" required="true"/>
       </inputs>
       <execute><![CDATA[
-      response.object = <Catalog><Item><foo /></Item></Catalog>;
+      var catalog = <Catalog><Catalog/>;
+      for each(var item in Catalog.Item) {
+      catalog.Catalog += <Item><ID>{item.ID}</ID></Item>
+      }
       ]]></execute>
     </select>
   </bindings>
