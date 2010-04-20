@@ -21,9 +21,6 @@
           }
           for each(var options in item.ItemFieldOptions) {
               var optionTags = <>;
-              for each (var option in options.Option) {
-	      	  optionTags += <Option>{option.@["Key"]}</Option>;
-	      }
               itemtag.Item += <{options.@["TableFieldID"]}>{optionTags}</{options.@["TableFieldID"]}>;
           }
           catalog.Catalog += itemtag;
