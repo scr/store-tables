@@ -24,7 +24,7 @@
 	      for each (var option in options.Option) {
 	          var optionTag = <Option>{option.@["Key"]}</Option>;
 		  for each (var optionValue in option.OptionValue) {
-		      optionTag.Option += <Value>{optionValue.@Value}</Value>;
+		      optionTag.Option += <Value>{optionValue.@["Value"]}</Value>;
 		  }
 	          optionTags += optionTag;
 	      }
