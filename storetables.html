@@ -1,40 +1,52 @@
 <html>
-<head><title>storetables</title></head>
-<body>
-<!-- YAHOO Global Object source file -->
-<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/yahoo/yahoo-min.js"></script>
+<head><title>storetables</title>
+        <!-- YAHOO Global Object source file -->
+        <script type="text/javascript" charset="utf-8" src="http://yui.yahooapis.com/3.1.0/build/yui/yui-min.js"></script>
 <!-- Additional source files go here -->
 <script type="text/javascript">
 <!--
-var id = 'acme';
+var id;
 var objInfo;
+var tableNode;
 function cbfunc(result) {
     objInfo = result;
-}
-function getQuery(id) {
-   alert("getQuery");
-   return
-   'http://developer.yahoo.com/yql/console/?env=http://github.com/scr/store-tables/raw/master/storetables.env&debug=true#h=select%20*%20from%20ystore.catalog.items%20where%20storeID%3D%22finevines%22%20and%20ID%3D%22' + id +'%22%3B';
+
+    tableNode.append("<tr><td>ID<td>" + objInfo.query.results.Item.ID);
+    tableNode.append("<tr><td>price<td>" + objInfo.query.results.Item.price);
+    tableNode.append("<tr><td>product-url<td>" + "<a href=" + objInfo.query.results.Item["product-url"] + ">" + objInfo.query.results.Item["product-url"] + "</a>");
 }
 -->
 </script>
+</head>
+<body>
 
-<script src="http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20ystore.catalog.items%20where%20storeID%3D%22finevines%22%20and%20ID%3D%22s4%22%3B&format=json&env=http%3A%2F%2Fgithub.com%2Fscr%2Fstore-tables%2Fraw%2Fmaster%2Fstoretables.env&debug=true&callback=cbfunc">
-</script>
+<div id="hello">
 
 <h1>Hello world</h1>
-<br />
-
+<p> This proof of concept shows StoreTags without the need for
+StoreTags.
+<p> Instead, it uses <a href="http://developer.yahoo.com/yql/">YQL</a>
+with Javascript to fetch the information about the item as given by
+the id parameter and write the contents
+<p> Here are a few sample parameters written by javascript:
+<table name="values" border=\"1\"><tr><th>param<th>value
 <script type="text/javascript">
 <!--
-document.write("hello world:");
-document.write("<table border=\"1\"><tr><th>param<th>value");
-document.write("<tr><td>ID<td>" + objInfo.query.results.Item.ID);
-document.write("<tr><td>price<td>" + objInfo.query.results.Item.price);
-document.write("<tr><td>product-url<td>" + "<a href=" + objInfo.query.results.Item["product-url"] + ">" + objInfo.query.results.Item["product-url"] + "</a>");
-document.write("</table");
+//Create a YUI instance including support for IO and JSON modules:
+YUI().use('node','querystring',function(Y) {
+    var helloNode = Y.one('#hello');
+
+    var qs = Y.QueryString.parse(window.location.search.substring(1));
+    id = qs.id || 'acme';
+
+    helloNode.insert('<script src="http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20ystore.catalog.items%20where%20storeID%3D%22finevines%22%20and%20ID%3D%22' + id + '%22%3B&format=json&env=http%3A%2F%2Fgithub.com%2Fscr%2Fstore-tables%2Fraw%2Fmaster%2Fstoretables.env&debug=true&callback=cbfunc"></script>');
+
+    tableNode = Y.one('#hello table');
+});
 -->
 </script>
 
+</table>
+</div>
 </body>
 </html>
