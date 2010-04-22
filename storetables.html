@@ -2,21 +2,7 @@
 <head><title>storetables</title>
         <!-- YAHOO Global Object source file -->
         <script type="text/javascript" charset="utf-8" src="http://yui.yahooapis.com/3.1.0/build/yui/yui-min.js"></script>
-<!-- Additional source files go here -->
-<script type="text/javascript">
-<!--
-var id;
-var objInfo;
-var tableNode;
-function cbfunc(result) {
-    objInfo = result;
-
-    tableNode.append("<tr><td>ID<td>" + objInfo.query.results.Item.ID);
-    tableNode.append("<tr><td>price<td>" + objInfo.query.results.Item.price);
-    tableNode.append("<tr><td>product-url<td>" + "<a href=" + objInfo.query.results.Item["product-url"] + ">" + objInfo.query.results.Item["product-url"] + "</a>");
-}
--->
-</script>
+	<!-- Additional source files go here -->
 </head>
 <body>
 
@@ -33,15 +19,24 @@ the id parameter and write the contents
 <script type="text/javascript">
 <!--
 //Create a YUI instance including support for IO and JSON modules:
-YUI().use('node','querystring',function(Y) {
+YUI({
+    //Last Gallery Build of this module
+    gallery: 'gallery-2010.01.27-20'
+}).use('node','querystring','gallery-yql',function(Y) {
     var helloNode = Y.one('#hello');
 
     var qs = Y.QueryString.parse(window.location.search.substring(1));
-    id = qs.id || 'acme';
-
-    helloNode.insert('<script src="http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20ystore.catalog.items%20where%20storeID%3D%22finevines%22%20and%20ID%3D%22' + id + '%22%3B&format=json&env=http%3A%2F%2Fgithub.com%2Fscr%2Fstore-tables%2Fraw%2Fmaster%2Fstoretables.env&debug=true&callback=cbfunc"></script>');
+    var itemID = qs.id || 'acme';
+    var storeID = qs.storeID || 'finevines';
 
     tableNode = Y.one('#hello table');
+
+    new Y.yql('select * from ystore.catalog.items where storeID="' + storeID + '" and ID="' + itemID + '"', function(r) {
+        tableNode.append("<tr><td>ID<td>" + r.query.results.Item.ID);
+	tableNode.append("<tr><td>price<td>" + r.query.results.Item.price);
+	tableNode.append("<tr><td>product-url<td>" + "<a href=" + r.query.results.Item["product-url"] + ">" + r.query.results.Item["product-url"] + "</a>");
+    }, {env : "http://github.com/scr/store-tables/raw/master/storetables.env"});
+    
 });
 -->
 </script>
