@@ -23,16 +23,20 @@ YUI().use('node','querystring','gallery-yql',function(Y) {
     var helloNode = Y.one('#hello');
 
     var qs = Y.QueryString.parse(window.location.search.substring(1));
-    var itemID = qs.id || 'acme';
+    var itemID = qs.id || qs.itemID || 'acme';
     var storeID = qs.storeID || 'finevines';
 
     tableNode = Y.one('#hello table');
 
-    new Y.yql('select * from ystore.catalog.items where storeID="' + storeID + '" and ID="' + itemID + '"', function(r) {
+    new Y.yql('select * from ystore.catalog.items where storeID=@storeID and ID=@itemID', function(r) {
         tableNode.append("<tr><td>ID<td>" + r.query.results.Item.ID);
 	tableNode.append("<tr><td>price<td>" + r.query.results.Item.price);
 	tableNode.append("<tr><td>product-url<td>" + "<a href=" + r.query.results.Item["product-url"] + ">" + r.query.results.Item["product-url"] + "</a>");
-    }, {env : "http://github.com/scr/store-tables/raw/master/storetables.env"});
+    }, {
+        env : "http://github.com/scr/store-tables/raw/master/storetables.env",
+	storeID : storeID,
+	itemID : itemID,
+    });
     
 });
 -->
