@@ -13,7 +13,7 @@
       </inputs>
       <execute><![CDATA[
       var fetch = request.get().response;
-      response.object = <SiteInfo>fetch</SiteInfo>;
+      response.object = <SiteInfo>{fetch}</SiteInfo>;
       ]]></execute>
     </select>
   </bindings>
