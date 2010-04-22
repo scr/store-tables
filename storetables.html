@@ -19,10 +19,7 @@ the id parameter and write the contents
 <script type="text/javascript">
 <!--
 //Create a YUI instance including support for IO and JSON modules:
-YUI({
-    //Last Gallery Build of this module
-    gallery: 'gallery-2010.01.27-20'
-}).use('node','querystring','gallery-yql',function(Y) {
+YUI().use('node','querystring','gallery-yql',function(Y) {
     var helloNode = Y.one('#hello');
 
     var qs = Y.QueryString.parse(window.location.search.substring(1));
