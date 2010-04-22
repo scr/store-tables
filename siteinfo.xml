@@ -6,7 +6,7 @@
   <bindings>
     <select itemPath="SiteInfo" produces="XML">
       <urls>
-        <url>http://{storeID}.stores.yahoo.com/siteinfo</url>
+        <url>http://store.yahoo.com/{storeID}/siteinfo</url>
       </urls>
       <inputs>
         <key id="storeID" type="xs:string" paramType="path" required="true"/>
