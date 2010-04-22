@@ -4,7 +4,7 @@
     <sampleQuery>select * from {table} where storeID="finevines" and Id="acme"</sampleQuery>
   </meta>
   <bindings>
-    <select itemPath="StoreExport.Products" produces="XML">
+    <select itemPath="StoreExport.Products.Product" produces="XML">
       <urls>
         <url>http://{storeID}.stores.yahoo.net/objinfo.xml</url>
       </urls>
